@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appMfDisabled]'
+  selector: '[appDisabled]'
 })
 export class DisabledDirective {
 

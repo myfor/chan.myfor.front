@@ -12,8 +12,9 @@
 
     <div class="div-new-thread">
       <form class="fom-new-thread">
-        <textarea class="txt-content" matInput name="content" rows="4" maxlength="250" placeholder="说点什么..."></textarea>
-        <button type="button" id="btn_submit" mat-raised-button color="primary" [appDisabled]="isDisabled" (click)="submitNewMessage()">确 定</button>
+        <textarea class="txt-content" #content matInput name="content" rows="4" (keyup)=input(content.value) maxlength="1024" placeholder="说点什么..."></textarea>
+        <span>还可以输入 {{remainWrodCount}} 字</span>
+        <button type="button" mat-raised-button color="primary" [appDisabled]="isDisabled" (click)="submitNewMessage()">确 定</button>
       </form>
     </div>
 
