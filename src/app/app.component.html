@@ -12,8 +12,8 @@
 
     <div class="div-new-thread">
       <form class="fom-new-thread">
-        <textarea class="txt-content" name="content" rows="4" maxlength="250" placeholder="说点什么..."></textarea>
-        <button mat-raised-button color="primary">说 点 什 么</button>
+        <textarea class="txt-content" matInput name="content" rows="4" maxlength="250" placeholder="说点什么..."></textarea>
+        <button type="button" id="btn_submit" mat-raised-button color="primary" [appDisabled]="isDisabled" (click)="submitNewMessage()">确 定</button>
       </form>
     </div>
 

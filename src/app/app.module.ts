@@ -4,17 +4,24 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatExpansionModule } from '@angular/material';
+import { DisabledDirective } from './directive/disabled.directive';
+
+const MATERIAL = [
+  MatButtonModule,
+  MatToolbarModule,
+  MatExpansionModule
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DisabledDirective
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatToolbarModule
+    ...MATERIAL
   ],
   providers: [],
   bootstrap: [AppComponent]

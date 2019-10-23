@@ -24,11 +24,12 @@
 .fom-new-thread {
     display: flex;
     flex-direction: column;
-    min-width: 270px;
+    min-width: 30rem;
 }
 
 .txt-content {
-    min-width: 270px;
+    min-width: 30rem;
+    min-height: 8rem;
     margin: 1rem 0;
 }
 
