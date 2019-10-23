@@ -11,11 +11,25 @@
     </div>
 
     <div class="div-new-thread">
-      <form class="fom-new-thread">
-        <textarea class="txt-content" #content matInput name="content" rows="4" (keyup)=input(content.value) maxlength="1024" placeholder="说点什么..."></textarea>
-        <span>还可以输入 {{remainWrodCount}} 字</span>
-        <button type="button" mat-raised-button color="primary" [appDisabled]="isDisabled" (click)="submitNewMessage()">确 定</button>
-      </form>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header color="primary">
+            <mat-panel-title>
+              <span>留 言</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <form class="fom-new-thread">
+            <textarea class="txt-content" #content matInput name="content" rows="4" (keyup)=input(content.value)
+              maxlength="1024" placeholder="想说点什么就说吧..."></textarea>
+            <span>还可以输入 {{remainWrodCount}} 字</span>
+            <mat-action-row>
+              <button type="button" mat-raised-button color="primary" [appDisabled]="isDisabled"
+                (click)="submitNewMessage()">确 定</button>
+            </mat-action-row>
+          </form>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
 
     <div class="div-watch">
