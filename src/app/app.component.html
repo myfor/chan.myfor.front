@@ -1,7 +1,7 @@
 <div class="div-layout">
   <div class="div-toolbar">
     <mat-toolbar color="primary">
-      <span>TOP BAR</span>
+      <span>chan.myFor</span>
     </mat-toolbar>
   </div>
   <div class="div-content">
@@ -22,7 +22,7 @@
           <form class="fom-new-thread">
             <textarea class="txt-content" #content matInput name="content" rows="4" (keyup)=input(content.value)
               maxlength="1024" placeholder="想说点什么就说吧..."></textarea>
-            <span>还可以输入 {{remainWrodCount}} 字</span>
+            <span>还可以输入 {{remainWrodCount}} 个字</span>
             <mat-action-row>
               <button type="button" mat-raised-button color="primary" [appDisabled]="isDisabled"
                 (click)="submitNewMessage()">确 定</button>
@@ -32,11 +32,14 @@
       </mat-accordion>
     </div>
 
-    <div class="div-watch">
-      <button mat-raised-button color="primary">
-        <span>随 便 看 看</span>
-      </button>
-    </div>
 
+  </div>
+  <div class="div-watch">
+    <button mat-raised-button color="primary" (click)="watch()">
+      <span>随 便 看 看</span>
+    </button>
+  </div>
+  <div class="div-list">
+    <mat-progress-bar mode="buffer" *ngIf="isListLoad"></mat-progress-bar>
   </div>
 </div>

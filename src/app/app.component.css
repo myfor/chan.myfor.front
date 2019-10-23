@@ -46,3 +46,10 @@
 .div-watch {
     padding: 0, .7rem;
 }
+
+.div-list {
+    min-width: 35rem;
+    width: 70%;
+    margin: 1rem 0;
+    padding: 1rem;
+}
