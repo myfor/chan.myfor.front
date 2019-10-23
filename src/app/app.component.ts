@@ -24,7 +24,6 @@ export class AppComponent {
      
     let timer = setInterval(() => {
       this.isDisabled = false;
-      alert('000')
       clearInterval(timer);
     }, SUBMIT_INTERVAL)
   }
