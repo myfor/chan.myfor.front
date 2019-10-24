@@ -65,6 +65,11 @@
   margin: .5rem 0;
 }
 
+.mc-acctions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .spn-message-content {
     line-height: 1.7;
     padding-left: 2rem;
