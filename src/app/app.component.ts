@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  watchText = '随 便 看 看';
   isListLoad = false;
   ALLOW_WORDS_COUNT = 1024;
   remainWrodCount = this.ALLOW_WORDS_COUNT;
@@ -32,7 +33,13 @@ export class AppComponent {
     this.remainWrodCount = this.ALLOW_WORDS_COUNT - value.length;
   }
 
+  //  点击随便看看
   watch(): void {
     this.isListLoad = true;
+
+
+
+    this.watchText = '再 随 便 看 看';
+    this.isListLoad = false;
   }
 }
