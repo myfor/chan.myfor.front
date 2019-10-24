@@ -6,8 +6,10 @@
   </div>
   <div class="div-content">
     <div class="div-theme-title">
-      <p><span class="spn-title" title="我们不会留下你的任何记录">在这里没有人知道你是谁</span></p>
-      <p><span class="spn-title" title="早上5点所有的留言都会清除">当今天过去, 这里的曾经都不复存在</span></p>
+      <p><span class="spn-title" title="我们不会留下你的任何记录" (click)="clickTitle_NoRecord()">在这里没有人知道你是谁</span></p>
+      <p><span class="spn-subtitle" *ngIf="showNoRecord">我们不会留下你的任何记录</span></p>
+      <p><span class="spn-title" title="早上5点所有的留言都会清除" (click)="clickTitle_ClearRecord()">当今天过去, 这里的曾经都不复存在</span></p>
+      <p><span class="spn-subtitle" *ngIf="showClearRecord">早上5点所有的留言都会清除</span></p>
     </div>
 
     <div class="div-new-thread">
@@ -33,7 +35,7 @@
     </div>
   </div>
 
-  <div class="div-watch">
+  <div class="div-watch" id="div_watch">
     <button mat-raised-button color="primary" (click)="watch()">
       <span>
         {{watchText}}

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageServiceService} from './services/messages/message-service.service';
-import { Pagination } from './services/pagination';
-import { MessageItem } from './services/messages/message-model';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +8,27 @@ import { MessageItem } from './services/messages/message-model';
 })
 export class AppComponent implements OnInit {
 
-  resultData: Pagination<MessageItem>;
+  resultData;
   watchText = '随 便 看 看';
   isListLoad = false;
   ALLOW_WORDS_COUNT = 1024;
   remainWrodCount = this.ALLOW_WORDS_COUNT;
   isDisabled = false;
+  showNoRecord = false;
+  showClearRecord = false;
 
   constructor(private messageService: MessageServiceService) {}
 
   ngOnInit(): void {
     this.resultData = this.messageService.getEmptyList();
+  }
+
+  clickTitle_NoRecord(): void {
+    this.showNoRecord = !this.showNoRecord;
+  }
+
+  clickTitle_ClearRecord(): void {
+    this.showClearRecord = !this.showClearRecord;    
   }
 
   //  提交
@@ -51,5 +59,7 @@ export class AppComponent implements OnInit {
 
     this.watchText = '再 随 便 看 看';
     this.isListLoad = false;
+
+    // document.getElementById('div_watch').scrollIntoView();
   }
 }
