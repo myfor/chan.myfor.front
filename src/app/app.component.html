@@ -31,10 +31,8 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-
-
   </div>
-  
+
   <div class="div-watch">
     <button mat-raised-button color="primary" (click)="watch()">
       <span>
@@ -45,47 +43,17 @@
 
   <div class="div-list">
     <mat-progress-bar mode="buffer" *ngIf="isListLoad"></mat-progress-bar>
-    
-    <mat-card class="mc-message">
-      <mat-card-header>
-        <mat-card-subtitle>
-          <span>匿名</span>
-        </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          <span class="spn-message-content">
-            吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽
-          </span>
-        </p>
-      </mat-card-content>
-    </mat-card>
-    
-    <mat-card class="mc-message">
-      <mat-card-header>
-        <mat-card-subtitle>
-          <span>匿名</span>
-        </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          <span class="spn-message-content">
-            吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽
-          </span>
-        </p>
-      </mat-card-content>
-    </mat-card>
 
-    <mat-card class="mc-message">
+    <mat-card class="mc-message" *ngFor="let message of resultData.list">
       <mat-card-header>
         <mat-card-subtitle>
-          <span>匿名</span>
+          <span>{{message.author}}</span>
         </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p>
           <span class="spn-message-content">
-            吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽
+            {{message.content}}
           </span>
         </p>
       </mat-card-content>
