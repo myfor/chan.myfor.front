@@ -49,6 +49,10 @@
   padding: 0, .7rem;
 }
 
+.div-watch > button {
+  margin: 0 1rem;
+}
+
 .div-list {
   display: flex;
   flex-direction: column;

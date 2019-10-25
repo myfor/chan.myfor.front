@@ -13,7 +13,7 @@ export class MessageServiceService {
   //  获取留言列表
   getList(index: number, size: number): Pagination<MessageItem> {
     const data = new Pagination<MessageItem>(
-      index, size, 100, 5,
+      index, size, 5, 100,
       [
         new MessageItem('匿名', '吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽'),
         new MessageItem('匿名', '吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽吐槽'),

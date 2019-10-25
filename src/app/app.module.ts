@@ -9,9 +9,12 @@ import {
   MatToolbarModule, 
   MatExpansionModule, 
   MatProgressBarModule,
-  MatCardModule
+  MatCardModule,
+  MatPaginatorModule
 } from '@angular/material';
 import { DisabledDirective } from './directive/disabled.directive';
+
+// import { PageEvent } from '@angular/material/paginator';
 
 const MATERIAL = [
   MatButtonModule,
@@ -19,6 +22,7 @@ const MATERIAL = [
   MatExpansionModule,
   MatProgressBarModule,
   MatCardModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

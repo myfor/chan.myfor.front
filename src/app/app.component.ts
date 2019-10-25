@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageServiceService} from './services/messages/message-service.service';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { MessageServiceService} from './services/messages/message-service.servic
 })
 export class AppComponent implements OnInit {
 
+  havePagination = false;
   resultData;
   watchText = '随 便 看 看';
   isListLoad = false;
@@ -16,7 +18,7 @@ export class AppComponent implements OnInit {
   isDisabled = false;
   showNoRecord = false;
   showClearRecord = false;
-
+  
   constructor(private messageService: MessageServiceService) {}
 
   ngOnInit(): void {
@@ -56,10 +58,25 @@ export class AppComponent implements OnInit {
     this.isListLoad = true;
 
     this.resultData = this.messageService.getList(1, 20);
+    this.havePagination = false;
 
     this.watchText = '再 随 便 看 看';
     this.isListLoad = false;
 
     // document.getElementById('div_watch').scrollIntoView();
+  }
+
+  //  点击最新
+  lastest(): void {
+    this.isListLoad = true;
+    
+    this.resultData = this.messageService.getList(1, 20);
+
+    this.havePagination = true;
+    this.isListLoad = false;
+  }
+
+  pageChange(event: PageEvent) {
+    console.log(event.pageIndex);
   }
 }
