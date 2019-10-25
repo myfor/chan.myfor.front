@@ -21,10 +21,11 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <form class="fom-new-thread">
-            <textarea class="txt-content" #content matInput name="content" rows="4" (keyup)=input(content.value)
-              maxlength="1024" placeholder="想说点什么就说吧..."></textarea>
-            <span>还可以输入 {{remainWrodCount}} 个字</span>
+          <form class="fom-new-thread" [formGroup]="newMessageForm">
+            <textarea class="txt-content" #content matInput formControlName="newMessage" rows="4" (keyup)=input(content.value)
+              maxlength="1024" placeholder="想说点什么就说吧..." required></textarea>
+            <p><span>还可以输入 {{remainWrodCount}} 个字</span></p>
+            <p *ngIf="false"><span>请输入留言</span></p>
             <mat-action-row>
               <button type="button" mat-raised-button color="primary" [appDisabled]="isDisabled"
                 (click)="submitNewMessage()">确 定</button>
@@ -37,10 +38,7 @@
 
   <div class="div-watch" id="div_watch">
     <button mat-raised-button color="primary" (click)="lastest()">
-      <span>最 新</span>
-    </button>
-    <button mat-raised-button color="primary" (click)="watch()">
-      <span>{{watchText}}</span>
+      <span>看 看 最 新</span>
     </button>
   </div>
 
@@ -62,10 +60,11 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-paginator *ngIf="havePagination"
+    <mat-paginator class="mp-paginator" *ngIf="havePagination"
       [length]="resultData.totalSizes"
       [pageSize]="resultData.size"
-      (page)="pageChange($event)">
+      (page)="pageChange($event)"
+      hidePageSize="true">
     </mat-paginator>
 
   </div>

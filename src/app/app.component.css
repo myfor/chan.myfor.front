@@ -78,3 +78,7 @@
     line-height: 1.7;
     padding-left: 2rem;
 }
+
+.mp-paginator {
+  margin: 1rem;
+}
