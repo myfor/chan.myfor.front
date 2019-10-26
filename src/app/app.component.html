@@ -22,10 +22,12 @@
           </mat-expansion-panel-header>
 
           <form class="fom-new-thread" [formGroup]="newMessageForm">
-            <textarea class="txt-content" #content matInput formControlName="newMessage" rows="4" (keyup)=input(content.value)
-              maxlength="1024" placeholder="想说点什么就说吧..." required></textarea>
-            <p><span>还可以输入 {{remainWrodCount}} 个字</span></p>
-            <p *ngIf="false"><span>请输入留言</span></p>
+            <mat-form-field>
+              <input matInput placeholder="匿名" formControlName="nickName">
+            </mat-form-field>
+            <textarea class="txt-content" #content matInput formControlName="newMessage" minRows="3"
+              (keyup)=input(content.value) maxlength="1024" placeholder="想说点什么就说吧..."></textarea>
+            <p>还可以输入 {{remainWrodCount}} 个字</p>
             <mat-action-row>
               <button type="button" mat-raised-button color="primary" [appDisabled]="isDisabled"
                 (click)="submitNewMessage()">确 定</button>
@@ -41,6 +43,25 @@
       <span>看 看 最 新</span>
     </button>
   </div>
+
+  <div class="div-list new-message-list">
+    <mat-card class="mc-message" *ngFor="let newMessage of newMessages">
+      <mat-card-header>
+        <mat-card-subtitle>
+          <span>{{newMessage.author}}</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          <span class="spn-message-content">
+            {{newMessage.content}}
+          </span>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-divider></mat-divider>
 
   <div class="div-list">
     <mat-progress-bar mode="buffer" *ngIf="isListLoad"></mat-progress-bar>
@@ -60,11 +81,8 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-paginator class="mp-paginator" *ngIf="havePagination"
-      [length]="resultData.totalSizes"
-      [pageSize]="resultData.size"
-      (page)="pageChange($event)"
-      hidePageSize="true">
+    <mat-paginator class="mp-paginator" *ngIf="havePagination" [length]="resultData.totalSizes"
+      [pageSize]="resultData.size" (page)="pageChange($event)" hidePageSize="true">
     </mat-paginator>
 
   </div>

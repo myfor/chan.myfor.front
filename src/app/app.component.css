@@ -30,6 +30,7 @@
 }
 
 .txt-content {
+  border-bottom: 1px solid #949494;
   min-height: 8rem;
   margin: 1rem 0;
 }
@@ -60,6 +61,10 @@
   width: 80%;
   margin: 1rem 0;
   padding: 1rem 0;
+}
+
+.new-message-list {
+  flex-direction: column-reverse;
 }
 
 .mc-message {

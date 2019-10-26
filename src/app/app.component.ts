@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageServiceService} from './services/messages/message-service.service';
+import { MessageServiceService } from './services/messages/message-service.service';
 import { PageEvent } from '@angular/material';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Pagination } from './services/pagination';
 
 @Component({
   selector: 'app-root',
@@ -10,27 +11,35 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
 
+  private readonly DEFAULT_NAME = '匿名';
+
   havePagination = false;
-  resultData;
+  resultData = Pagination.getEmpty();
   isListLoad = false;
   ALLOW_WORDS_COUNT = 1024;
   remainWrodCount = this.ALLOW_WORDS_COUNT;
   isDisabled = true;
   showNoRecord = false;
   showClearRecord = false;
-  
+  //  刚发布的新信息
+  newMessages: NewMessage[] = [];
+
   constructor(
     private messageService: MessageServiceService,
     private fb: FormBuilder
   ) {}
 
   newMessageForm = this.fb.group({
+    nickName: [''],
     newMessage: ['', [Validators.required]]
   });
 
-
+  //  init
   ngOnInit(): void {
-    this.resultData = this.messageService.getEmptyList();
+    // this.resultData = this.messageService.getEmptyList();
+    this.messageService.getEmptyList().subscribe((data) => {
+      this.resultData = data
+    });
   }
 
   clickTitle_NoRecord(): void {
@@ -47,17 +56,18 @@ export class AppComponent implements OnInit {
       return;
     }
     this.isDisabled = true;
+    let nickName = this.newMessageForm.get('nickName');
+    if (!nickName.value) {
+      nickName.setValue(this.DEFAULT_NAME);
+    }
 
-    //  提交给服务器, 成功后计时提交的间隔
+    //  提交给服务器
+    let newMessage = this.newMessageForm.get('newMessage').value;
 
+    this.newMessages.push(
+      new NewMessage(nickName.value, newMessage)
+    );
 
-    // //  提交间隔
-    // const SUBMIT_INTERVAL = 3000;
-
-    // const timer = setInterval(() => {
-    //   this.isDisabled = false;
-    //   clearInterval(timer);
-    // }, SUBMIT_INTERVAL)
     this.newMessageForm.reset();
     this.isDisabled = false;
   }
@@ -71,13 +81,33 @@ export class AppComponent implements OnInit {
   lastest(): void {
     this.isListLoad = true;
     
-    this.resultData = this.messageService.getList(1, 20);
+    this.messageService.getList(1, 20)
+      .subscribe((data) => {
+        this.resultData = data;
+      });
 
     this.havePagination = true;
     this.isListLoad = false;
   }
 
   pageChange(event: PageEvent) {
+    let index: number = event.pageIndex; 
+    let size: number = event.pageSize;
+
+    this.messageService.getList(index, size)
+      .subscribe((data) => {
+        this.resultData = data;
+      });
+  }
+
+  
+}
+
+class NewMessage {
+  constructor(
+    public author: string,
+    public content: string
+  ) {
     
   }
 }

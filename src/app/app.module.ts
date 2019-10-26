@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -11,7 +12,10 @@ import {
   MatExpansionModule, 
   MatProgressBarModule,
   MatCardModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatDividerModule,
+  MatInputModule,
+  MatFormFieldModule
 } from '@angular/material';
 import { DisabledDirective } from './directive/disabled.directive';
 
@@ -23,7 +27,10 @@ const MATERIAL = [
   MatExpansionModule,
   MatProgressBarModule,
   MatCardModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatDividerModule,
+  MatInputModule,
+  MatFormFieldModule
 ];
 
 @NgModule({
@@ -35,6 +42,7 @@ const MATERIAL = [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ...MATERIAL
   ],
   providers: [],
