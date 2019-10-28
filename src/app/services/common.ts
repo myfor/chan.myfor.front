@@ -8,10 +8,16 @@ export class Pagination<T>
         public list: T[]
     ) {}
 
-    static getEmpty()
-    {
+    static getEmpty() {
         return new Pagination<any>(
             0, 0, 0, 0, []
         );
     }
+}
+
+export class Result {
+    constructor(
+        public message: string,
+        public data: any
+    ) {}
 }

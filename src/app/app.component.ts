@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MessageServiceService } from './services/messages/message-service.service';
 import { PageEvent } from '@angular/material';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Pagination } from './services/pagination';
+import { Pagination } from './services/common';
+import { NewMessage_Model } from './services/messages/message-model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   private readonly DEFAULT_NAME = '匿名';
 
   havePagination = false;
-  resultData = Pagination.getEmpty();
+  resultData = Pagination.getEmpty(); 
   isListLoad = false;
   ALLOW_WORDS_COUNT = 1024;
   remainWrodCount = this.ALLOW_WORDS_COUNT;
@@ -33,14 +34,6 @@ export class AppComponent implements OnInit {
     nickName: [''],
     newMessage: ['', [Validators.required]]
   });
-
-  //  init
-  ngOnInit(): void {
-    // this.resultData = this.messageService.getEmptyList();
-    this.messageService.getEmptyList().subscribe((data) => {
-      this.resultData = data
-    });
-  }
 
   clickTitle_NoRecord(): void {
     this.showNoRecord = !this.showNoRecord;
@@ -67,6 +60,10 @@ export class AppComponent implements OnInit {
     this.newMessages.push(
       new NewMessage(nickName.value, newMessage)
     );
+
+    let model = new NewMessage_Model(nickName.value, newMessage);
+    this.messageService.addMessage(model)
+      .subscribe();
 
     this.newMessageForm.reset();
     this.isDisabled = false;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Pagination } from '../pagination';
-import { MessageItem } from './message-model';
-import { HttpClient } from '@angular/common/http';
+import { Pagination, Result } from '../common';
+import { MessageItem, NewMessage_Model } from './message-model';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,16 +15,31 @@ export class MessageServiceService {
 
   //  获取留言列表
   getList(index: number, size: number): Observable<Pagination<MessageItem>> {
-    const tmpUrl = 'assets/mocks/messages.json';
+    // const tmpUrl = 'assets/mocks/messages.json';
+    const url = 'http://192.168.1.192:9000/messages';
 
-    return this.http.get<Pagination<MessageItem>>(tmpUrl);
+    const options = {
+      params: new HttpParams()
+        .set('index', index.toString())
+        .set('size', size.toString())
+    };
+
+    return this.http.get<Pagination<MessageItem>>(url, options);
   }
 
-  getEmptyList(): Observable<Pagination<MessageItem>> {
+  addMessage(model: NewMessage_Model): Observable<Result> {
+    const url = 'http://192.168.1.192:9000/messages';
 
-    const tmpUrl = 'assets/mocks/empty.message.json';
+    if (model.invalid) {
+      throw "新留言参数无效";
+    }
 
-    return this.http.get<Pagination<MessageItem>>(tmpUrl);
+    // const optionss = {
+    //   params: new HttpParams()
+    //     .set('author', model.author)
+    //     .set('content', model.content)
+    // };
+
+    return this.http.post<Result>(url, model);
   }
-
 }
